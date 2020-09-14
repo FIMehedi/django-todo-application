@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todos</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="shortcut icon" href="{% static 'todos/favicon.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'todos/style.css' %}">
+</head>
+<body class="bg-light">
+    <div class="container mt-3">
+       <div class="row">
+           <div class="col-md-8 offset-md-2">
+                <div class="card">
+           <div class="card-body">
+               <h1 class="card-title text-info"><i class="fas fa-check-double"></i>
+                    <span class="font-weight-bold">Todos</span>
+               </h1>
+                <form action="{% url 'todo_insert' %}" method="post" autocomplete="off">
+                    {% csrf_token %}
+                    <div class="input-group">
+                        <input type="text" name="task" class="form-control" placeholder="Add todos item..." aria-label="Recipient's username" aria-describedby="button-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-info" type="submit" id="button-addon2"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+                        </div>
+                    </div>
+                </form>
+           </div>
+           <ul class="list-group list-group-flush">
+                {% for task in task_list %}
+                    <li class="list-group-item">
+                        <span class="font-weight-bold">{{ task }}</span>
+                        <form action="{% url 'todo_remove' task.id %}" method="post" class="d-inline float-right">
+                            {% csrf_token %}
+                            <button class="btn" type="submit"><i class="fa fa-trash text-danger float-right" aria-hidden="true"></i></button>
+                        </form>
+                        {% empty %}
+                        <li class="list-group-item text-center"><span class="text-mute">No todo item found!</span></li>
+                    </li>
+                {% endfor %}
+           </ul>
+       </div>
+           </div>
+       </div>
+    </div>
+</body>
+</html>
