@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="card-title text-info"><i class="fas fa-check-double"></i>
+                        <span class="font-weight-bold">Todos</span>
+                    </h1>
+                    <form action="{% url 'todo_insert' %}" method="post" autocomplete="off">
+                        {% csrf_token %}
+                        <div class="input-group">
+                            <input type="text" name="task" class="form-control" required="required" placeholder="Add todos item..."
+                                aria-label="Recipient's username" aria-describedby="button-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-info" type="submit" id="button-addon2"><i
+                                        class="fa fa-plus-circle" aria-hidden="true"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <ul class="list-group list-group-flush">
+                    {% for task in task_list %}
+                    <li class="list-group-item">
+                        <span class="font-weight-bold">{{ task }}</span>
+                        <form action="{% url 'todo_remove' task.id %}" method="post" class="d-inline float-right">
+                            {% csrf_token %}
+                            <button class="btn" type="submit"><i class="fa fa-trash text-danger float-right"
+                                    aria-hidden="true"></i></button>
+                        </form>
+                        {% empty %}
+                    <li class="list-group-item text-center"><span class="text-mute">No todo item found!</span></li>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

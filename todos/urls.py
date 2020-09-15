@@ -1,6 +1,10 @@
 from django.urls import path
 
-from .views import list_todo_item, insert_todo_item, remove_todo_item
+from .views import (
+    list_todo_item,
+    insert_todo_item,
+    remove_todo_item,
+    )
 
 
 urlpatterns = [

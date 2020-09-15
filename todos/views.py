@@ -7,12 +7,13 @@ from .models import Todo
 
 def list_todo_item(request):
     context = {'task_list': Todo.objects.all()}
-    return render(request, 'todos/task_list.html', context)
+    return render(request, 'task_list.html', context)
 
 def insert_todo_item(request:HttpRequest):
-    task = request.POST['task']
-    todo = Todo(task=task)
-    todo.save()
+    task = request.POST['task'].strip()
+    if task != '':
+        todo = Todo(task=task)
+        todo.save()
     return redirect(reverse('todo_list'))
 
 def remove_todo_item(request, id):
