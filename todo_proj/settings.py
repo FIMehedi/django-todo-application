@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # Local Apps
     'todos.apps.TodosConfig',
+    'users.apps.UsersConfig',
+    # 3rd party
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -127,3 +130,12 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'static'
 ]
+
+# User Authentication
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'
+LOGIN_REDIRECT_URL = 'todo_list'
+LOGOUT_REDIRECT_URL = 'home'
+
+# Crispy settings
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

@@ -25,7 +25,7 @@
                     {% for task in task_list %}
                     <li class="list-group-item">
                         <span class="font-weight-bold">{{ task }}</span>
-                        <form action="{% url 'todo_remove' task.id %}" method="post" class="d-inline float-right">
+                        <form action="{% url 'todo_remove' task.pk %}" method="post" class="d-inline float-right">
                             {% csrf_token %}
                             <button class="btn" type="submit"><i class="fa fa-trash text-danger float-right"
                                     aria-hidden="true"></i></button>

@@ -18,7 +18,7 @@
 <body class="bg-light">
     <nav class="navbar navbar-expand-md navbar-dark bg-info mb-4">
         <a href="{% url 'home' %}" class="navbar-brand font-weight-bold">Todo App</a>
-        {% comment %} <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -35,17 +35,17 @@
                         <a class="dropdown-item"
                         href="">Change password</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="">Log Out</a>
+                    <a class="dropdown-item" href="{% url 'logout' %}">Log Out</a>
                     </div>
                 </li>
             </ul>
             {% else %}
             <form class="form-inline ml-auto">
-                <a href="" class="btn btn-outline-light">Log In</a>
-                <a href="" class="btn btn-light ml-2">Sign up</a>
+                <a href="{% url 'login' %}" class="btn btn-outline-light">Log In</a>
+                <a href="{% url 'signup' %}" class="btn btn-light ml-2">Sign up</a>
             </form>
             {% endif %}
-        </div> {% endcomment %}
+        </div>
     </nav>
 
     {% block content %}
